@@ -1,0 +1,2047 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Twenty Hampers — Considered gifts for teams, clients & events</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Italiana&family=Manrope:wght@300;400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet" />
+
+<style>
+/* Twenty Hampers — warm, artisanal, editorial */
+
+:root {
+  /* Palette — warm artisanal default */
+  --paper:        #F2EBDD;
+  --paper-deep:   #E7DCC6;
+  --paper-card:   #EFE6D2;
+  --ink:          #1A1410;
+  --ink-soft:     #4A3E32;
+  --ink-mute:     #7A6A56;
+  --terracotta:   #B14A26;
+  --terracotta-d: #8C3A1E;
+  --gold:         #9A7C3F;
+  --rule:         rgba(26,20,16,.16);
+  --rule-soft:    rgba(26,20,16,.08);
+
+  /* Type */
+  --display: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  --accent:  'Italiana', 'Cormorant Garamond', serif;
+  --body:    'Manrope', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Rhythm */
+  --gutter: clamp(20px, 4vw, 56px);
+  --section-y: clamp(80px, 11vw, 160px);
+
+  --ease-out: cubic-bezier(.16,.84,.34,1);
+}
+
+/* ───── Palettes (set on body via data-palette) ───── */
+body[data-palette="bone-burgundy"]{
+  --paper:#F4F0E8; --paper-deep:#E8E1D2; --paper-card:#EFE8D8;
+  --ink:#1A0F0E; --ink-soft:#3E2D2C; --ink-mute:#705958;
+  --terracotta:#7A1F2B; --terracotta-d:#5A1320; --gold:#A38658;
+  --rule:rgba(26,15,14,.16); --rule-soft:rgba(26,15,14,.08);
+}
+body[data-palette="sand-saffron"]{
+  --paper:#F6EFDD; --paper-deep:#ECDFC0; --paper-card:#F2E5C7;
+  --ink:#231708; --ink-soft:#4A3416; --ink-mute:#7A5F30;
+  --terracotta:#C26B14; --terracotta-d:#9A4F0C; --gold:#B58737;
+  --rule:rgba(35,23,8,.16); --rule-soft:rgba(35,23,8,.08);
+}
+body[data-palette="midnight-gold"]{
+  --paper:#1B1610; --paper-deep:#241D14; --paper-card:#2A2218;
+  --ink:#F1E7D0; --ink-soft:#C8B68F; --ink-mute:#8C7A56;
+  --terracotta:#D08840; --terracotta-d:#A66626; --gold:#D9B36C;
+  --rule:rgba(241,231,208,.16); --rule-soft:rgba(241,231,208,.06);
+}
+
+/* ───── Display fonts ───── */
+body[data-display="italiana"]{ --display: 'Italiana', serif; }
+body[data-display="tenor"]{    --display: 'Tenor Sans', serif; }
+
+/* ───── Texture ───── */
+body[data-texture="paper"]::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+  background:
+    radial-gradient(transparent 1px, rgba(0,0,0,.018) 1px),
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44NSIgbnVtT2N0YXZlcz0iMiIgc2VlZD0iMyIvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAwICAwIDAgMCAwIDAgIDAgMCAwIDAgMCAgMCAwIDAgLjA0NSAwIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIi8+PC9zdmc+");
+  background-size: 3px 3px, 180px 180px;
+  mix-blend-mode: multiply; opacity:.7;
+}
+body[data-texture="linen"]::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+  background:
+    repeating-linear-gradient(0deg, rgba(26,20,16,.025) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(26,20,16,.025) 0 1px, transparent 1px 3px);
+}
+
+/* ───── Base ───── */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a{color:inherit; text-decoration:none}
+img,svg{display:block; max-width:100%}
+
+/* Type primitives */
+.eyebrow{
+  font-family: var(--body);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.eyebrow .dot{display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--terracotta); margin:0 .8em; transform:translateY(-2px)}
+.display{
+  font-family: var(--display);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 0.98;
+  color: var(--ink);
+}
+.display em{ font-family: var(--accent); font-style: italic; font-weight: 400; color: var(--terracotta); letter-spacing: 0; }
+.script{ font-family: var(--accent); font-style: italic; font-weight: 400; }
+h2.section-title{
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(40px, 5.4vw, 72px);
+  line-height: 1.02; letter-spacing: -0.005em;
+  margin: 0;
+}
+.section-num{
+  font-family: var(--accent);
+  color: var(--terracotta);
+  font-size: 14px; letter-spacing: .08em;
+  font-style: italic;
+}
+.kicker{
+  font-family: var(--body);
+  font-size: 12px; font-weight: 500;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.lead{
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(20px, 2vw, 26px); line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+
+/* Container & rules */
+.container{ max-width: 1320px; margin: 0 auto; padding: 0 var(--gutter); }
+.rule{ height:1px; background: var(--rule); width:100%; }
+.rule-double{
+  height: 6px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Ornament — block-print inspired */
+.ornament{
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  color: var(--terracotta); opacity:.85;
+}
+.ornament .line{ flex:0 0 60px; height:1px; background: currentColor; opacity:.5; }
+.ornament svg{ width:22px; height:22px; }
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; gap:14px;
+  padding: 16px 30px;
+  font-family: var(--body); font-size: 12px; font-weight:500;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--paper); background: var(--ink);
+  border: 1px solid var(--ink); border-radius: 0;
+  cursor: pointer; transition: background .25s var(--ease-out), color .25s var(--ease-out);
+}
+.btn:hover{ background: var(--terracotta); border-color: var(--terracotta); }
+.btn .arrow{ display:inline-block; transition: transform .35s var(--ease-out); }
+.btn:hover .arrow{ transform: translateX(6px); }
+
+.btn-ghost{
+  background: transparent; color: var(--ink); border: 1px solid var(--ink);
+}
+.btn-ghost:hover{ background: var(--ink); color: var(--paper); }
+
+.btn-link{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family: var(--body); font-size: 11.5px; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink); padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+}
+.btn-link:hover{ color: var(--terracotta); border-color: var(--terracotta); }
+
+/* ───── Top nav ───── */
+.topnav{
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in oklab, var(--paper) 86%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.topnav-inner{
+  display:grid; grid-template-columns: 1fr auto 1fr; align-items:center;
+  height: 116px; gap: 24px;
+  max-width: 1320px; margin:0 auto; padding: 0 var(--gutter);
+}
+.brand{ display:flex; align-items:center; gap:12px; }
+.brand .mark{
+  width: 38px; height: 38px; display:grid; place-items:center;
+  border: 1px solid var(--ink); color: var(--ink);
+  font-family: var(--accent); font-size: 16px;
+}
+.brand .word{
+  font-family: var(--display); font-weight: 400;
+  font-size: 19px; letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brand .word em{ font-family: var(--accent); font-style: italic; color: var(--terracotta); text-transform:none; letter-spacing:0; padding: 0 4px; font-weight: 400; }
+
+/* Logo lockup — black-tile mark on light surfaces, bare on dark */
+.brand-logo{ display:inline-flex; align-items:center; }
+.brand-logo img{
+  display:block; height: auto; width: 188px; max-width: 100%;
+  background: #0E0A07;
+  padding: 10px 18px;
+  border: 1px solid #0E0A07;
+  image-rendering: -webkit-optimize-contrast;
+  transition: opacity .25s var(--ease-out);
+}
+.brand-logo:hover img{ opacity: .9; }
+.brand-logo-foot img{
+  background: transparent;
+  border: 0;
+  padding: 0;
+  width: 228px;
+  height: auto;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.navlinks{
+  display:flex; align-items:center; gap: 36px;
+  font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+  font-weight: 500; color: var(--ink-soft);
+}
+.navlinks a{ position:relative; padding: 8px 0; transition: color .25s var(--ease-out); }
+.navlinks a:hover{ color: var(--ink); }
+.navlinks a::after{
+  content:""; position:absolute; left:50%; bottom:0; width:0; height:1px; background: var(--terracotta);
+  transition: width .35s var(--ease-out), left .35s var(--ease-out);
+}
+.navlinks a:hover::after{ width: 100%; left: 0; }
+
+.nav-right{ display:flex; align-items:center; justify-content:flex-end; gap: 18px; }
+.nav-icon{
+  width: 38px; height: 38px; display:grid; place-items:center;
+  border: 1px solid transparent; transition: border-color .25s var(--ease-out);
+}
+.nav-icon:hover{ border-color: var(--rule); }
+
+/* ───── Hero ───── */
+.hero{
+  position: relative;
+  padding: clamp(64px, 9vw, 128px) 0 0;
+  overflow: hidden;
+}
+.hero-meta{
+  display:flex; justify-content:space-between; align-items:flex-end;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: clamp(40px, 6vw, 80px);
+}
+.hero-meta .right{ text-align:right; }
+.hero-meta .right .small{ font-size:11px; letter-spacing:.22em; text-transform:uppercase; color: var(--ink-mute); margin-bottom: 4px; }
+.hero-meta .right .val{ font-family: var(--display); font-size: 18px; }
+
+.hero-headline{
+  text-align: center;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+.hero-headline h1{
+  margin: 0;
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(56px, 11.5vw, 196px);
+  line-height: .92; letter-spacing: -0.018em;
+}
+.hero-headline h1 .l1{ display:block; }
+.hero-headline h1 .l2{ display:block; font-style:italic; font-family: var(--accent); color: var(--terracotta); font-weight: 400; letter-spacing: 0; }
+
+.hero-sub{
+  margin: clamp(28px, 3.5vw, 48px) auto 0;
+  max-width: 640px;
+  text-align: center;
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(18px, 1.55vw, 22px); line-height: 1.45;
+  color: var(--ink-soft);
+}
+.hero-actions{
+  display:flex; justify-content:center; align-items:center; gap: 28px;
+  margin: clamp(32px, 4vw, 56px) 0 clamp(64px, 8vw, 96px);
+  flex-wrap: wrap;
+}
+
+.hero-plate{
+  position: relative;
+  height: clamp(360px, 56vw, 720px);
+  margin: 0 calc(var(--gutter) * -0.4);
+}
+.plate{
+  position: relative;
+  background: var(--paper-deep);
+  overflow: hidden;
+  isolation:isolate;
+}
+.plate::after{
+  /* subtle vignette + crosshatch suggestion of texture */
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(26,20,16,.06), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(26,20,16,.025) 0 2px, transparent 2px 8px);
+  pointer-events:none;
+}
+.plate-label{
+  position: absolute; left: 22px; bottom: 20px;
+  display:flex; align-items:center; gap:10px;
+  font-family: var(--body); font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.plate-label .sq{ width: 8px; height:8px; background: var(--terracotta); }
+.plate-tag{
+  position:absolute; right: 22px; top: 22px;
+  font-family: var(--accent); font-style: italic; font-size: 16px; color: var(--ink-soft);
+}
+
+/* Marquee — clients */
+.marquee{
+  margin: clamp(80px, 9vw, 140px) 0 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 28px 0;
+  overflow: hidden;
+}
+.marquee-track{
+  display:flex; gap: 64px; align-items: center;
+  animation: marquee 60s linear infinite;
+  width: max-content;
+}
+.marquee-track .item{
+  font-family: var(--display); font-weight: 400;
+  font-size: 22px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-soft); white-space: nowrap;
+}
+.marquee-track .dot{ width:6px; height:6px; border-radius:50%; background: var(--terracotta); flex:0 0 auto; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ───── Sections ───── */
+section.block{ padding: var(--section-y) 0; position: relative; }
+.section-head{
+  display:grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 5vw, 80px);
+  align-items: end;
+  margin-bottom: clamp(48px, 7vw, 88px);
+}
+.section-head .left .num{ margin-bottom: 14px; }
+.section-head .right{ padding-bottom: 8px; max-width: 56ch; justify-self: end; }
+.section-head .right p{ margin: 0; font-family: var(--display); font-weight: 300; font-size: 19px; line-height: 1.5; color: var(--ink-soft); }
+
+/* Collections grid */
+.collections-grid{
+  display: grid; grid-template-columns: repeat(12, 1fr);
+  gap: clamp(20px, 2.4vw, 36px);
+}
+.col-card{ position: relative; cursor: pointer; }
+.col-card .col-plate{ aspect-ratio: 4/5; }
+.col-card.tall .col-plate{ aspect-ratio: 4/6; }
+.col-card.wide .col-plate{ aspect-ratio: 5/4; }
+.col-card .col-meta{
+  display:flex; justify-content:space-between; align-items:flex-start;
+  margin-top: 18px; gap: 12px;
+}
+.col-card .col-num{
+  font-family: var(--accent); font-style:italic; font-size: 13px;
+  color: var(--terracotta); letter-spacing: .04em;
+}
+.col-card h3{
+  margin: 0;
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(22px, 1.7vw, 28px); line-height: 1.1;
+  letter-spacing: -0.005em;
+}
+.col-card .col-tag{
+  font-family: var(--body); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.col-card .col-link{
+  display:inline-flex; align-items:center; gap: 8px;
+  margin-top: 10px;
+  font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0; transform: translateX(-6px);
+  transition: opacity .35s var(--ease-out), transform .35s var(--ease-out), color .25s var(--ease-out);
+}
+.col-card:hover .col-link{ opacity: 1; transform: translateX(0); color: var(--terracotta); }
+.col-card .col-plate{ transition: transform .8s var(--ease-out); }
+.col-card:hover .col-plate{ transform: scale(.985); }
+
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-5 { grid-column: span 5; }
+.span-6 { grid-column: span 6; }
+.span-7 { grid-column: span 7; }
+.span-8 { grid-column: span 8; }
+
+/* ───── Story / philosophy ───── */
+.story{
+  background: var(--paper);
+  position: relative;
+}
+.story-grid{
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: clamp(40px, 7vw, 120px);
+  align-items: stretch;
+}
+.story-plate{ aspect-ratio: 4/5; }
+.story-text{ padding-top: clamp(0px, 4vw, 40px); }
+.story-text h2{ margin-bottom: 32px; }
+.story-text .first p:first-child::first-letter{
+  font-family: var(--display); font-weight: 400;
+  float: left; font-size: 6.4em; line-height: .8;
+  padding: 8px 14px 0 0; color: var(--terracotta);
+}
+.story-text p{ font-family: var(--display); font-weight: 300; font-size: 19px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 22px; }
+.story-text p em{ font-family: var(--accent); font-style: italic; color: var(--ink); }
+.story-sig{
+  display:flex; align-items:center; gap: 14px;
+  margin-top: 28px;
+  font-family: var(--accent); font-style: italic;
+  font-size: 22px; color: var(--ink);
+}
+.story-sig .role{ font-family: var(--body); font-style: normal; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-mute); border-left: 1px solid var(--rule); padding-left: 14px; margin-left: 4px; }
+
+/* ───── Bespoke ───── */
+.bespoke{
+  background: #1A1410;
+  color: #F1E7D0;
+  --rule: rgba(241,231,208,.18); --rule-soft: rgba(241,231,208,.08);
+}
+.bespoke .display em{ color: #D9B36C; }
+.bespoke .section-num{ color: #D9B36C; }
+.bespoke .btn{ background: #F1E7D0; border-color: #F1E7D0; color: #1A1410; }
+.bespoke .btn:hover{ background: var(--terracotta); border-color: var(--terracotta); color: #F1E7D0; }
+.bespoke .plate{ background: #2A2218; }
+.bespoke .plate::after{
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(241,231,208,.06), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(241,231,208,.025) 0 2px, transparent 2px 8px);
+}
+.bespoke .plate-label{ color: #8C7A56; }
+.bespoke .plate-label .sq{ background: #D9B36C; }
+.bespoke .plate-tag{ color: #C8B68F; }
+.bespoke-grid{
+  display:grid; grid-template-columns: 1.05fr 1fr;
+  gap: clamp(40px, 7vw, 100px);
+  align-items: center;
+}
+.steps{
+  margin-top: 40px;
+  display: grid; gap: 0;
+  border-top: 1px solid var(--rule);
+}
+.step{
+  display:grid; grid-template-columns: 60px 1fr auto;
+  gap: 24px; padding: 26px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+.step .n{ font-family: var(--accent); font-style: italic; font-size: 22px; color: #D9B36C; }
+.step h4{ margin: 0 0 6px; font-family: var(--display); font-weight: 400; font-size: 22px; }
+.step p{ margin: 0; font-size: 14px; line-height: 1.55; color: #C8B68F; max-width: 52ch; }
+.step .lead-time{ font-family: var(--body); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #8C7A56; white-space: nowrap; }
+
+/* ───── Testimonials ───── */
+.testimonials{ background: var(--paper-deep); }
+.testimonials .section-head{ margin-bottom: clamp(40px, 6vw, 72px); }
+.testi-grid{
+  display:grid; grid-template-columns: repeat(2, 1fr);
+  gap: clamp(28px, 4vw, 64px);
+}
+.testi{
+  display:flex; flex-direction:column;
+  padding: 40px 0 36px;
+  border-top: 1px solid var(--rule);
+}
+.testi .qmark{
+  font-family: var(--accent); color: var(--terracotta);
+  font-size: 60px; line-height: .5; margin-bottom: 24px;
+  font-style: italic;
+}
+.testi blockquote{
+  margin: 0;
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(20px, 1.7vw, 24px); line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.testi blockquote em{ font-family: var(--accent); font-style: italic; }
+.testi .who{
+  display:flex; align-items:center; gap: 14px;
+  margin-top: auto; padding-top: 28px;
+}
+.testi .avatar{
+  width: 44px; height: 44px; border-radius: 50%;
+  display:grid; place-items:center;
+  font-family: var(--display); font-size: 16px; color: var(--paper);
+  flex: 0 0 auto;
+}
+.testi .who .name{ font-family: var(--display); font-size: 17px; font-weight: 500; line-height: 1.2; }
+.testi .who .role{ font-family: var(--body); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute); }
+
+/* Trust strip — wordmarks */
+.trust-strip{
+  margin-top: clamp(64px, 8vw, 96px);
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+}
+.trust-strip .label{ text-align:center; margin-bottom: 28px; }
+.trust-grid{
+  display: grid; grid-template-columns: repeat(8, 1fr);
+  gap: 0;
+  border-left: 1px solid var(--rule);
+}
+.trust-grid .cell{
+  border-right: 1px solid var(--rule);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 28px 16px;
+  display:grid; place-items:center;
+  font-family: var(--display); font-weight: 400;
+  font-size: 14px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align:center;
+  transition: color .25s var(--ease-out), background .25s var(--ease-out);
+}
+.trust-grid .cell:hover{ color: var(--terracotta); background: var(--paper); }
+
+/* ───── Corporate CTA ───── */
+.corporate{
+  background: var(--terracotta);
+  color: var(--paper);
+  --ink: #F2EBDD; --ink-soft: #F2EBDDcc; --ink-mute: #F2EBDDaa;
+  --rule: rgba(242,235,221,.25);
+  position: relative;
+  overflow: hidden;
+}
+.corporate .display em{ color: #1A1410; }
+.corp-grid{
+  display:grid; grid-template-columns: 1.2fr 1fr;
+  gap: clamp(40px, 7vw, 120px);
+  align-items: stretch;
+}
+.corp-left h2{
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: .96;
+  margin-bottom: 32px;
+}
+.corp-left .lead{ color: rgba(242,235,221,.85); max-width: 48ch; }
+.corp-left .corp-meta{
+  margin-top: clamp(40px, 5vw, 64px);
+  display:grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  border-top: 1px solid var(--rule);
+  padding-top: 28px;
+}
+.corp-meta .stat .n{
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(40px, 4.4vw, 64px);
+  line-height: 1; letter-spacing: -0.01em;
+  color: #1A1410;
+}
+.corp-meta .stat .l{
+  font-family: var(--body); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(242,235,221,.85); margin-top: 10px;
+}
+
+.enquire-card{
+  background: var(--paper);
+  color: var(--ink);
+  padding: clamp(28px, 3.4vw, 44px);
+  --ink: #1A1410; --ink-soft: #4A3E32; --ink-mute: #7A6A56;
+  --rule: rgba(26,20,16,.16);
+}
+.enquire-card .kicker{ color: var(--ink-mute); }
+.enquire-card h3{
+  margin: 12px 0 6px;
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(28px, 2.5vw, 36px); line-height: 1.05;
+}
+.enquire-card h3 em{ font-family: var(--accent); font-style: italic; color: var(--terracotta); }
+.enquire-card .sub{ font-family: var(--display); font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+.enquire-card form{ display:grid; gap: 18px; }
+.enquire-card .row2{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.enquire-card label{
+  display:block;
+  font-family: var(--body); font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-mute); margin-bottom: 6px;
+}
+.enquire-card .field{
+  width:100%;
+  background: transparent;
+  border: 0; border-bottom: 1px solid var(--rule);
+  padding: 8px 0 10px;
+  font-family: var(--display); font-size: 17px; color: var(--ink);
+  outline: none;
+  transition: border-color .25s var(--ease-out);
+}
+.enquire-card .field:focus{ border-color: var(--terracotta); }
+.enquire-card select.field{
+  appearance:none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%23B14A26' d='M0 0h10L5 6z'/></svg>");
+  background-repeat:no-repeat; background-position:right 4px center;
+  padding-right: 18px;
+}
+.enquire-card .actions{ display:flex; align-items:center; justify-content:space-between; margin-top: 8px; }
+.enquire-card .legal{ font-size: 11px; color: var(--ink-mute); max-width: 22ch; }
+
+/* ───── Footer ───── */
+footer.foot{
+  background: #1A1410;
+  color: #F2EBDD;
+  padding: clamp(72px, 9vw, 120px) 0 32px;
+  --rule: rgba(242,235,221,.18);
+}
+.foot-top{
+  display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  gap: clamp(20px, 4vw, 56px);
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--rule);
+}
+.foot .brand .word{ color: #F2EBDD; }
+.foot .brand .mark{ border-color: #F2EBDD; color: #F2EBDD; }
+.foot-tagline{
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(22px, 2vw, 28px); line-height: 1.25;
+  color: #F2EBDD; margin: 28px 0 0; max-width: 18ch;
+}
+.foot-tagline em{ font-family: var(--accent); font-style: italic; color: #D9B36C; }
+.foot-col h5{
+  margin: 0 0 22px;
+  font-family: var(--body); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(242,235,221,.6); font-weight: 500;
+}
+.foot-col ul{ list-style:none; margin:0; padding:0; display:grid; gap: 12px; }
+.foot-col a{
+  font-family: var(--display); font-size: 16px; color: #F2EBDD;
+  transition: color .2s var(--ease-out);
+}
+.foot-col a:hover{ color: #D9B36C; }
+.foot-bottom{
+  display:flex; justify-content:space-between; align-items:center;
+  padding-top: 28px;
+  font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(242,235,221,.5);
+  flex-wrap: wrap; gap: 16px;
+}
+.foot-socials{ display:flex; gap: 14px; }
+.foot-socials a{ width:34px; height:34px; display:grid; place-items:center; border:1px solid var(--rule); border-radius:50%; transition: border-color .25s, color .25s; }
+.foot-socials a:hover{ border-color: #D9B36C; color: #D9B36C; }
+
+/* ───── Reveals — additive only. Content is visible by default; .in adds a soft enter. ───── */
+.reveal{ transition: opacity .9s var(--ease-out), transform .9s var(--ease-out); }
+.js-on .reveal:not(.in){ opacity: .001; transform: translateY(20px); }
+
+.reveal-stagger > *{ transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
+.js-on .reveal-stagger:not(.in) > *{ opacity: .001; transform: translateY(16px); }
+.reveal-stagger.in > *:nth-child(1){ transition-delay: 0ms; }
+.reveal-stagger.in > *:nth-child(2){ transition-delay: 80ms; }
+.reveal-stagger.in > *:nth-child(3){ transition-delay: 160ms; }
+.reveal-stagger.in > *:nth-child(4){ transition-delay: 240ms; }
+.reveal-stagger.in > *:nth-child(5){ transition-delay: 320ms; }
+.reveal-stagger.in > *:nth-child(6){ transition-delay: 400ms; }
+
+/* Hero letter reveal — keep simple, no overflow:hidden trick */
+.reveal-letters{ transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out); }
+.js-on .reveal-letters:not(.in){ opacity: .001; transform: translateY(24px); }
+.reveal-stagger.in > *:nth-child(1){ transition-delay: 0ms; }
+.reveal-stagger.in > *:nth-child(2){ transition-delay: 80ms; }
+.reveal-stagger.in > *:nth-child(3){ transition-delay: 160ms; }
+.reveal-stagger.in > *:nth-child(4){ transition-delay: 240ms; }
+.reveal-stagger.in > *:nth-child(5){ transition-delay: 320ms; }
+.reveal-stagger.in > *:nth-child(6){ transition-delay: 400ms; }
+
+.js-on .reveal-letters .l1, .js-on .reveal-letters .l2{
+  display:block;
+}
+
+/* ───── Responsive ───── */
+@media (max-width: 1080px){
+  .topnav-inner{ grid-template-columns: 1fr auto; }
+  .navlinks{ display: none; }
+  .section-head{ grid-template-columns: 1fr; gap: 24px; }
+  .section-head .right{ justify-self: start; padding-bottom: 0; }
+  .collections-grid{ grid-template-columns: repeat(6, 1fr); }
+  .span-3, .span-4, .span-5, .span-6, .span-7, .span-8{ grid-column: span 6; }
+  .story-grid{ grid-template-columns: 1fr; }
+  .bespoke-grid{ grid-template-columns: 1fr; }
+  .corp-grid{ grid-template-columns: 1fr; }
+  .testi-grid{ grid-template-columns: 1fr; }
+  .trust-grid{ grid-template-columns: repeat(4, 1fr); }
+  .foot-top{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px){
+  .hero-meta{ flex-direction: column; align-items: flex-start; gap: 24px; }
+  .hero-meta .right{ text-align:left; }
+  .step{ grid-template-columns: 36px 1fr; }
+  .step .lead-time{ grid-column: 2; padding-top: 6px; }
+  .corp-meta{ grid-template-columns: 1fr 1fr; }
+  .enquire-card .row2{ grid-template-columns: 1fr; }
+  .trust-grid{ grid-template-columns: repeat(2, 1fr); }
+  .foot-top{ grid-template-columns: 1fr; }
+  .foot-bottom{ flex-direction: column; align-items: flex-start; }
+  .hero-headline h1{ font-size: clamp(48px, 16vw, 96px); }
+}
+
+</style>
+
+<script type="application/json" id="tweak-defaults">
+/*EDITMODE-BEGIN*/{
+  "palette": "warm-artisanal",
+  "display": "cormorant",
+  "texture": "paper",
+  "ornaments": true
+}/*EDITMODE-END*/
+</script>
+</head>
+<body data-palette="warm-artisanal" data-display="cormorant" data-texture="paper">
+
+<template id="__bundler_thumbnail" data-bg-color="#F2EBDD">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F2EBDD"/>
+    <g transform="translate(600 400)" font-family="Cormorant Garamond, Georgia, serif" text-anchor="middle">
+      <text y="-30" font-size="120" font-weight="300" fill="#1A1410" letter-spacing="6">TWENTY</text>
+      <text y="90" font-size="72" font-style="italic" fill="#B14A26" font-family="Italiana, serif">Hampers</text>
+      <line x1="-90" y1="140" x2="90" y2="140" stroke="#B14A26" stroke-width="1.5"/>
+    </g>
+  </svg>
+</template>
+
+<!-- ───── Top nav ───── -->
+<header class="topnav">
+  <div class="topnav-inner">
+    <a class="brand brand-logo" href="#" aria-label="Twenty Hampers — Corporate Gifting">
+      <img src='data:image/png;base64,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z/lpz6677hq/tsPM/BzEvMYaa1TzzjtvHA/i8GEnE2CYAw88MIRDWO6aa67p+0gaDRIEHeP7q7JOSj38t/HUU0+NeE47WGWVVarzzjsvwu+5554h6OjB3L344our++67r1prrbWqhRZaKI679GE2v4suuig6vA033LC6/vrrgxZ+Y77NNttUJ5xwQtAY/XfcccfqoIMOivTR1ftFFlmk7yCs4447Lj74Vtb+eEqYbqJbAolh64F0peF7yhUGqueee+66MEO94IIL1oUB63nmmacuTFSX3r2ea6656iJEdRHYujBdXZixPuKII+oimHVh2nrkyJH1SSedVBcNWhcNWm+00Ub1pptuWpcGqkuPXh977LGRJufd5ptvXhfhi3iHHXZYXZixLpqkXnTRRevCZPXMM89cFwGoi7DVp512WrxTjt13373edttto7yc/PbYY48oy2qrrdZHX3GVY++9965HjRpVF00T4aVxwQUX9PkVIQ//Zpsoc2nySGPnnXeuSwcV5VFv9FBu79SlCHfco8Hhhx8e9HEvXVdx5DPjjDPWpcOqi5DFs/p4v9tuu0WZikAFLUePHh11FG/hhReuSycSdZTHJptsUh9zzDFRFnkXIY90lVe5pdHpsk7dckn/wXZT/RiyVLJae+21Q1OMHTs2zEbm2YMPPhj3K6ywQnzJ/sADD4R2oPluuOGG6OH1iqXxQ5sURgnzzAlqNIB3hZlC8wijl2f+8ecnPg0srHRpWKcILLbYYvGeJtPzM5PFoZVoO2nyl2cRqNDOtJU8xKPtxE1tTbO65y+M0+623377arvttqtKxxP+WSZwpe0cPKWe3q2++uqhxWhx75UhzUTPwiy33HLxF+g111wzfguQ5Ze/qzD8mKniKhM/YNqWziLCrrvuun1pg/YpnWK13377RflXWmmloBG6AL+0GLqtFYcCU71AEgYCiMEB82AITmNjIO/yGYxvnn766WAAjIWBMbp//GMyp8lhVCYcZmOWFs0Y8ZzDKg7BZoq6l6e0MDoGTCaff/75qy222CLMZx3C7bffHu8IYtEmYS4TAuGYqJlOOmm7KjenrkxPHY+rzgCEyasyEBxjZumpA5PbLxCWXHLJyD/DSlM5CZIrJ09h0C3TTXqCd+I1aSqcvK644ooYHviTsjQh00MXYThlYZYrq/jDCVN9bQkJTaWRU4NhdFoTIxAuvxzHKJ69c2+sh1nAPw2Nrw444IBg2hQ0zMJdeumlMd468cQT+5jq8ssvj/Ge3l94EzjFbI2yeK8ctKbxn7EUJsXEhIoGosH8U9IEinEmgSeoysjpJOTtXnrg+dZbb42xo7jGYN4TjKYwgv9s0LzyE8dV+sK6Tw3oyl+5jQn9Vk8HJy1pcmgsH/dN4RQ/81dfk0zGyVtttVU1xxxz9IVjGRj/ElJ/DVNn2jrrNZwwTWnE/V++HxBolF5CMpjJnPXXXz80jv9vMB/zpzi0CbPNJArT7MorrwwmERfjlfFMCAWGMung2SQGASIEzF/aKBkYDdxj3I033jg6A5NKZ599dpxqDhiOoGJ05fAsPe8JsQ7BxJJfgCurSSDlzNlYAumZ2a0MNIzJEpMsBN9ECy3NJcQjXDoTAqm+Jp5cTb4QZO/UmYn+0EMPhSApm85DGM8peNLL92PGjAmB4scx7x999NGgh7Jx2kB5pet61113RX78CfU666wT5iqBvOqqqyJMdiAJaQ8F0LgbGDYbAzBOOsyUGgAjpHbIxvZOuKbW4DAixkrtmM/CNeGdMN5J0zXTSH95yyMFAPg1GU54EE5e6YTJ/N0nzYUj5MrD3zXTyDiZVubj6lk45QL3/IRHC9e89y7TUG55uDbj5JXT4XmvjPyzHK7icN7ns7RdQdrC5jNkuaXVTShXNzCsDrnSmJzG7GzQCb1LP/fguXk/LkxOuhODZtxE5pXoL88mmuE7w/aX/rjQX9gJxe9875kD/hObd7fQCmSLFj2Ebgnk8JrCatGixzHgGrJFixaTj1ZDtmjRM6iq/we8B2w61LnDOAAAAABJRU5ErkJggg==' alt="Twenty Hampers · Corporate Gifting" />
+    </a>
+
+    <nav class="navlinks" aria-label="Primary">
+      <a href="#collections">Collections</a>
+      <a href="#story">The House</a>
+      <a href="#bespoke">Bespoke</a>
+      <a href="#testimonials">Voices</a>
+      <a href="#corporate">Corporate</a>
+    </nav>
+
+    <div class="nav-right">
+      <a class="nav-icon" href="#" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </a>
+      <a class="btn-link" href="#corporate">
+        <span>Enquire</span>
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 5h13M9 1l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ───── Hero ───── -->
+<section class="hero">
+  <div class="container">
+
+    <div class="hero-meta reveal">
+      <div class="left">
+        <div class="eyebrow">EST. 2015 · BENGALURU · INDIA</div>
+      </div>
+      <div class="right">
+        <div class="small">
+</div>
+        <div class="val script">
+</div>
+      </div>
+    </div>
+
+    <div class="hero-headline reveal-letters">
+      <h1>
+        <span class="l1">Gifting,</span>
+        <span class="l2">considered.</span>
+      </h1>
+    </div>
+
+    <p class="hero-sub reveal">
+      A house of curated hampers and corporate gifts —
+      <em class="script">composed, packed and delivered</em>
+      with the patience of a private atelier, for teams, clients and the moments that matter.
+    </p>
+
+    <div class="hero-actions reveal">
+      <a class="btn" href="#corporate">
+        <span>Begin a Hamper</span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="btn-link" href="#collections">View the collections</a>
+    </div>
+
+    <div class="hero-plate reveal">
+      <div class="plate" style="height: 100%;">
+        <div class="plate-tag">Plate I — The opening still life</div>
+        <div class="plate-label"><span class="sq"></span><span>Hero composition · brass tray, raw silk, hand-tied twine, signature hamper open</span></div>
+      </div>
+    </div>
+
+    <!-- Trusted-by marquee -->
+    <div class="marquee reveal" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="item">TATA</span>
+        <span class="dot"></span>
+        <span class="item">RELIANCE</span>
+        <span class="dot"></span>
+        <span class="item">MAHINDRA</span>
+        <span class="dot"></span>
+        <span class="item">HDFC BANK</span>
+        <span class="dot"></span>
+        <span class="item">GODREJ</span>
+        <span class="dot"></span>
+        <span class="item">L&amp;T</span>
+        <span class="dot"></span>
+        <span class="item">ADITYA BIRLA</span>
+        <span class="dot"></span>
+        <span class="item">INFOSYS</span>
+        <span class="dot"></span>
+        <span class="item">OBEROI</span>
+        <span class="dot"></span>
+        <span class="item">TAJ HOTELS</span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ───── II — Collections ───── -->
+<section class="block" id="collections">
+  <div class="container">
+
+    <header class="section-head">
+      <div class="left reveal">
+        <div class="section-num num">II<span class="script" style="color:var(--ink-mute); margin-left:10px; font-size:13px;">— The Collections</span></div>
+        <h2 class="section-title">A vocabulary <em class="script" style="font-family:var(--accent); color:var(--terracotta); font-style:italic;">of gestures.</em></h2>
+      </div>
+      <div class="right reveal">
+        <p>Each collection is composed around a single intention — a welcome, a thank-you, an introduction, a celebration. We curate the contents, draw the packaging and tie every parcel by hand.</p>
+      </div>
+    </header>
+
+    <div class="collections-grid reveal-stagger">
+
+      <article class="col-card span-7">
+        <div class="plate col-plate">
+          <div class="plate-tag">No. I</div>
+          <div class="plate-label"><span class="sq"></span><span>Walnut tray, blackened brass; pen, leather diary, dark chocolate</span></div>
+        </div>
+        <div class="col-meta">
+          <div>
+            <div class="col-num">No. I</div>
+            <h3>Executive Essentials</h3>
+            <div class="col-tag">For Boards & Leadership</div>
+          </div>
+          <a class="col-link" href="#">Open <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="col-card span-5">
+        <div class="plate col-plate">
+          <div class="plate-tag">No. II</div>
+          <div class="plate-label"><span class="sq"></span><span>Hand-bound diary, brass paper-knife, wax seal kit</span></div>
+        </div>
+        <div class="col-meta">
+          <div>
+            <div class="col-num">No. II</div>
+            <h3>Diaries &amp; the Desk</h3>
+            <div class="col-tag">Workplace Elevation</div>
+          </div>
+          <a class="col-link" href="#">Open <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="col-card span-4">
+        <div class="plate col-plate">
+          <div class="plate-tag">No. III</div>
+          <div class="plate-label"><span class="sq"></span><span>Linen-wrapped box of figs, almonds, rose-petal preserves</span></div>
+        </div>
+        <div class="col-meta">
+          <div>
+            <div class="col-num">No. III</div>
+            <h3>Gourmet &amp; Dry Fruits</h3>
+            <div class="col-tag">Festive Tables</div>
+          </div>
+          <a class="col-link" href="#">Open <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="col-card span-4">
+        <div class="plate col-plate">
+          <div class="plate-tag">No. IV</div>
+          <div class="plate-label"><span class="sq"></span><span>Hand-poured chocolates, monogrammed wrapper</span></div>
+        </div>
+        <div class="col-meta">
+          <div>
+            <div class="col-num">No. IV</div>
+            <h3>The Chocolatier</h3>
+            <div class="col-tag">Hand-Made in House</div>
+          </div>
+          <a class="col-link" href="#">Open <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="col-card span-4">
+        <div class="plate col-plate">
+          <div class="plate-tag">No. V</div>
+          <div class="plate-label"><span class="sq"></span><span>Welcome kit — apparel, journal, drinkware, letter</span></div>
+        </div>
+        <div class="col-meta">
+          <div>
+            <div class="col-num">No. V</div>
+            <h3>Onboarding &amp; Welcome</h3>
+            <div class="col-tag">For New Joiners</div>
+          </div>
+          <a class="col-link" href="#">Open <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="col-card span-5">
+        <div class="plate col-plate">
+          <div class="plate-tag">No. VI</div>
+          <div class="plate-label"><span class="sq"></span><span>Diwali parcel — diyas, dry fruits, hand-block silk wrap</span></div>
+        </div>
+        <div class="col-meta">
+          <div>
+            <div class="col-num">No. VI</div>
+            <h3>Festive &amp; Occasions</h3>
+            <div class="col-tag">Diwali, New Year, Weddings</div>
+          </div>
+          <a class="col-link" href="#">Open <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="col-card span-7">
+        <div class="plate col-plate">
+          <div class="plate-tag">No. VII</div>
+          <div class="plate-label"><span class="sq"></span><span>Travel hamper — leather pouch, cashmere blanket, brass flask</span></div>
+        </div>
+        <div class="col-meta">
+          <div>
+            <div class="col-num">No. VII</div>
+            <h3>Travel &amp; the Road</h3>
+            <div class="col-tag">For the Often-Away</div>
+          </div>
+          <a class="col-link" href="#">Open <span>→</span></a>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ───── III — Story ───── -->
+<section class="block story" id="story">
+  <div class="container">
+    <header class="section-head">
+      <div class="left reveal">
+        <div class="section-num num">III<span class="script" style="color:var(--ink-mute); margin-left:10px; font-size:13px;">— The House</span></div>
+        <h2 class="section-title">Twenty parcels.<br/><em class="script" style="font-family:var(--accent); color:var(--terracotta); font-style:italic;">Twenty thousand details.</em></h2>
+      </div>
+      <div class="right reveal">
+        <p>Twenty Hampers began with a small, stubborn idea — that a corporate gift could be as considered as a personal letter, and that the act of giving deserved more time than the act of buying.</p>
+      </div>
+    </header>
+
+    <div class="story-grid">
+      <div class="reveal">
+        <div class="plate story-plate">
+          <div class="plate-tag">Plate II</div>
+          <div class="plate-label"><span class="sq"></span><span>Atelier interior — hands tying twine, paper rolls, stamps</span></div>
+        </div>
+      </div>
+
+      <div class="story-text reveal">
+        <div class="first">
+          <p>We blend creativity, quality and thoughtful presentation into hampers that feel personally chosen — never assembled. Every parcel is curated with care, and every gesture is meant to be remembered long after the ribbon has been untied.</p>
+          <p>From elegant <em>hand-block</em> wraps and waxed-paper interleaves to the hand-stamped envelope your message arrives in — the smallest details are where the largest impressions are made.</p>
+          <p>We work in small batches, with named artisans, and refuse to ship anything we wouldn't be proud to receive ourselves. That has, to date, remained a useful filter.</p>
+        </div>
+        <div class="story-sig">
+          <span>Aanya &amp; Kabir Mehra</span>
+          <span class="role">Founders</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── IV — Bespoke ───── -->
+<section class="block bespoke" id="bespoke">
+  <div class="container">
+
+    <header class="section-head">
+      <div class="left reveal">
+        <div class="section-num num">IV<span class="script" style="color:#8C7A56; margin-left:10px; font-size:13px;">— The Bespoke Service</span></div>
+        <h2 class="section-title" style="color:#F1E7D0;">A hamper, drawn <em class="script" style="font-family:var(--accent); color:#D9B36C; font-style:italic;">to your hand.</em></h2>
+      </div>
+      <div class="right reveal" style="color:#C8B68F;">
+        <p style="color:#C8B68F;">For the gift that asks for more than a catalogue. We curate, design and produce private hampers in editions of twenty to two thousand — wax-sealed with your monogram, your story, your sentiment.</p>
+      </div>
+    </header>
+
+    <div class="bespoke-grid">
+      <div class="reveal">
+        <div class="plate" style="aspect-ratio: 5/4;">
+          <div class="plate-tag">Plate III</div>
+          <div class="plate-label"><span class="sq"></span><span>Bespoke commission — monogrammed leather portfolio, pressed flower notecard</span></div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="ornament" style="justify-content:flex-start; margin-bottom: 18px;">
+          <span class="line"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="2.5" fill="currentColor"/><path d="M12 1v6M12 17v6M1 12h6M17 12h6M4.2 4.2l4.2 4.2M15.6 15.6l4.2 4.2M4.2 19.8l4.2-4.2M15.6 8.4l4.2-4.2"/></svg>
+        </div>
+
+        <p class="lead" style="color:#C8B68F; max-width:48ch;">Four conversations, one signature parcel. Our concierge walks you through each step, in person or by post.</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="n">i.</div>
+            <div>
+              <h4 style="color:#F1E7D0;">The Brief</h4>
+              <p>A 30-minute conversation with our concierge — recipients, intention, palette, packaging, the one detail that must be right.</p>
+            </div>
+            <div class="lead-time">Day 0–1</div>
+          </div>
+          <div class="step">
+            <div class="n">ii.</div>
+            <div>
+              <h4 style="color:#F1E7D0;">The Composition</h4>
+              <p>A hand-drawn moodboard and three composition options. Photographed, costed and returned for your review.</p>
+            </div>
+            <div class="lead-time">Day 3–7</div>
+          </div>
+          <div class="step">
+            <div class="n">iii.</div>
+            <div>
+              <h4 style="color:#F1E7D0;">The Sample</h4>
+              <p>One physical sample to your address. We refine the parcel, the wrap, the wax — until it reads exactly as intended.</p>
+            </div>
+            <div class="lead-time">Day 8–14</div>
+          </div>
+          <div class="step">
+            <div class="n">iv.</div>
+            <div>
+              <h4 style="color:#F1E7D0;">The Edition</h4>
+              <p>Production in our Mumbai atelier. White-glove delivery to a single address or to recipients across India and abroad.</p>
+            </div>
+            <div class="lead-time">Day 14–28</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px;">
+          <a class="btn" href="#corporate">
+            <span>Commission a Hamper</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ───── V — Testimonials + Trust ───── -->
+<section class="block testimonials" id="testimonials">
+  <div class="container">
+
+    <header class="section-head">
+      <div class="left reveal">
+        <div class="section-num num">V<span class="script" style="color:var(--ink-mute); margin-left:10px; font-size:13px;">— Voices</span></div>
+        <h2 class="section-title">Notes from the <em class="script" style="font-family:var(--accent); color:var(--terracotta); font-style:italic;">recipients' table.</em></h2>
+      </div>
+      <div class="right reveal">
+        <p>A selection of letters and replies received this past season. Names, with permission.</p>
+      </div>
+    </header>
+
+    <div class="testi-grid reveal-stagger">
+
+      <figure class="testi">
+        <div class="qmark">“</div>
+        <blockquote>The parcel arrived <em>on a Tuesday</em>, and by Wednesday three of our directors had asked who curated it. That, for a thank-you gift, is the only review that matters.</blockquote>
+        <figcaption class="who">
+          <div class="avatar" style="background:#1d4ed8;">RM</div>
+          <div>
+            <div class="name">Rohan Mathur</div>
+            <div class="role">Managing Partner · Mathur & Co</div>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="testi">
+        <div class="qmark">“</div>
+        <blockquote>We commissioned six hundred onboarding parcels for new joiners across four cities. Each arrived <em>identically considered</em>. A standard we had given up expecting from any vendor.</blockquote>
+        <figcaption class="who">
+          <div class="avatar" style="background:#7e22ce;">PA</div>
+          <div>
+            <div class="name">Priya Anand</div>
+            <div class="role">Chief People Officer · Aurelia Capital</div>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="testi">
+        <div class="qmark">“</div>
+        <blockquote>For our wedding, they translated a single line from my grandmother's letters into the wax seal of every guest's hamper. <em>Quietly extraordinary.</em></blockquote>
+        <figcaption class="who">
+          <div class="avatar" style="background:#15803d;">VK</div>
+          <div>
+            <div class="name">Vidya Kothari</div>
+            <div class="role">Private commission · Udaipur</div>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="testi">
+        <div class="qmark">“</div>
+        <blockquote>I am rarely surprised by gifting. Twenty Hampers managed it twice in a single year. Diwali, and then again at New Year — <em>without repeating themselves.</em></blockquote>
+        <figcaption class="who">
+          <div class="avatar" style="background:#b45309;">AS</div>
+          <div>
+            <div class="name">Arjun Saraf</div>
+            <div class="role">Founder · Saraf Family Office</div>
+          </div>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <div class="trust-strip reveal">
+      <div class="kicker label">Clients of the House</div>
+      <div class="trust-grid">
+        <div class="cell">Tata</div>
+        <div class="cell">Reliance</div>
+        <div class="cell">Mahindra</div>
+        <div class="cell">HDFC</div>
+        <div class="cell">Godrej</div>
+        <div class="cell">Aditya Birla</div>
+        <div class="cell">Oberoi</div>
+        <div class="cell">Taj</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ───── VI — Corporate / Enquire ───── -->
+<section class="block corporate" id="corporate">
+  <div class="container">
+    <div class="corp-grid">
+
+      <div class="corp-left">
+        <div class="reveal">
+          <div class="kicker" style="color:rgba(242,235,221,.65); margin-bottom:18px;">VI &nbsp; — &nbsp; Corporate Gifting</div>
+          <h2 class="section-title display" style="color:var(--paper);">Gifting <em class="script" style="font-family:var(--accent); color:#1A1410; font-style:italic;">for teams,</em><br/>clients &amp; events.</h2>
+          <p class="lead reveal" style="margin-top:28px;">From founder gifts of twenty to enterprise editions of twenty thousand — composed, sourced, branded and delivered, on schedule and in voice.</p>
+        </div>
+
+        <div class="corp-meta reveal-stagger">
+          <div class="stat">
+            <div class="n">20k+</div>
+            <div class="l">Hampers shipped<br/>this past festive season</div>
+          </div>
+          <div class="stat">
+            <div class="n">100+</div>
+            <div class="l">Cities reached<br/>across India &amp; abroad</div>
+          </div>
+          <div class="stat">
+            <div class="n">7d</div>
+            <div class="l">Average lead time<br/>for bespoke editions</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="enquire-card reveal">
+        <div class="kicker">Begin a Conversation</div>
+        <h3>A private <em>enquiry</em> for your house.</h3>
+        <p class="sub">No prices. No catalogues. We respond personally, within one working day.</p>
+
+        <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thank you · we will write';">
+          <div class="row2">
+            <div>
+              <label for="f-name">Your name</label>
+              <input id="f-name" class="field" type="text" placeholder="" required />
+            </div>
+            <div>
+              <label for="f-co">Company / House</label>
+              <input id="f-co" class="field" type="text" placeholder="" />
+            </div>
+          </div>
+
+          <div class="row2">
+            <div>
+              <label for="f-email">Email</label>
+              <input id="f-email" class="field" type="email" placeholder="" required />
+            </div>
+            <div>
+              <label for="f-phone">Telephone</label>
+              <input id="f-phone" class="field" type="tel" placeholder="+91" />
+            </div>
+          </div>
+
+          <div class="row2">
+            <div>
+              <label for="f-occ">Occasion</label>
+              <select id="f-occ" class="field">
+                <option>Corporate · Annual</option>
+                <option>Diwali / Festive</option>
+                <option>Onboarding / Welcome</option>
+                <option>Wedding / Personal</option>
+                <option>Other — to discuss</option>
+              </select>
+            </div>
+            <div>
+              <label for="f-qty">Edition size</label>
+              <select id="f-qty" class="field">
+                <option>20 — 100 parcels</option>
+                <option>100 — 500 parcels</option>
+                <option>500 — 2,000 parcels</option>
+                <option>2,000+ parcels</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="actions">
+            <p class="legal">By writing, you agree to be telephoned — once, kindly.</p>
+            <button class="btn" type="submit">
+              <span>Send Enquiry</span>
+              <span class="arrow">→</span>
+            </button>
+          </div>
+        </form>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ───── Footer ───── -->
+<footer class="foot">
+  <div class="container">
+
+    <div class="foot-top">
+      <div>
+        <div class="brand brand-logo brand-logo-foot">
+          <img src='data:image/png;base64,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z/lpz6677hq/tsPM/BzEvMYaa1TzzjtvHA/i8GEnE2CYAw88MIRDWO6aa67p+0gaDRIEHeP7q7JOSj38t/HUU0+NeE47WGWVVarzzjsvwu+5554h6OjB3L344our++67r1prrbWqhRZaKI679GE2v4suuig6vA033LC6/vrrgxZ+Y77NNttUJ5xwQtAY/XfcccfqoIMOivTR1ftFFlmk7yCs4447Lj74Vtb+eEqYbqJbAolh64F0peF7yhUGqueee+66MEO94IIL1oUB63nmmacuTFSX3r2ea6656iJEdRHYujBdXZixPuKII+oimHVh2nrkyJH1SSedVBcNWhcNWm+00Ub1pptuWpcGqkuPXh977LGRJufd5ptvXhfhi3iHHXZYXZixLpqkXnTRRevCZPXMM89cFwGoi7DVp512WrxTjt13373edttto7yc/PbYY48oy2qrrdZHX3GVY++9965HjRpVF00T4aVxwQUX9PkVIQ//Zpsoc2nySGPnnXeuSwcV5VFv9FBu79SlCHfco8Hhhx8e9HEvXVdx5DPjjDPWpcOqi5DFs/p4v9tuu0WZikAFLUePHh11FG/hhReuSycSdZTHJptsUh9zzDFRFnkXIY90lVe5pdHpsk7dckn/wXZT/RiyVLJae+21Q1OMHTs2zEbm2YMPPhj3K6ywQnzJ/sADD4R2oPluuOGG6OH1iqXxQ5sURgnzzAlqNIB3hZlC8wijl2f+8ecnPg0srHRpWKcILLbYYvGeJtPzM5PFoZVoO2nyl2cRqNDOtJU8xKPtxE1tTbO65y+M0+623377arvttqtKxxP+WSZwpe0cPKWe3q2++uqhxWhx75UhzUTPwiy33HLxF+g111wzfguQ5Ze/qzD8mKniKhM/YNqWziLCrrvuun1pg/YpnWK13377RflXWmmloBG6AL+0GLqtFYcCU71AEgYCiMEB82AITmNjIO/yGYxvnn766WAAjIWBMbp//GMyp8lhVCYcZmOWFs0Y8ZzDKg7BZoq6l6e0MDoGTCaff/75qy222CLMZx3C7bffHu8IYtEmYS4TAuGYqJlOOmm7KjenrkxPHY+rzgCEyasyEBxjZumpA5PbLxCWXHLJyD/DSlM5CZIrJ09h0C3TTXqCd+I1aSqcvK644ooYHviTsjQh00MXYThlYZYrq/jDCVN9bQkJTaWRU4NhdFoTIxAuvxzHKJ69c2+sh1nAPw2Nrw444IBg2hQ0zMJdeumlMd468cQT+5jq8ssvj/Ge3l94EzjFbI2yeK8ctKbxn7EUJsXEhIoGosH8U9IEinEmgSeoysjpJOTtXnrg+dZbb42xo7jGYN4TjKYwgv9s0LzyE8dV+sK6Tw3oyl+5jQn9Vk8HJy1pcmgsH/dN4RQ/81dfk0zGyVtttVU1xxxz9IVjGRj/ElJ/DVNn2jrrNZwwTWnE/V++HxBolF5CMpjJnPXXXz80jv9vMB/zpzi0CbPNJArT7MorrwwmERfjlfFMCAWGMung2SQGASIEzF/aKBkYDdxj3I033jg6A5NKZ599dpxqDhiOoGJ05fAsPe8JsQ7BxJJfgCurSSDlzNlYAumZ2a0MNIzJEpMsBN9ECy3NJcQjXDoTAqm+Jp5cTb4QZO/UmYn+0EMPhSApm85DGM8peNLL92PGjAmB4scx7x999NGgh7Jx2kB5pet61113RX78CfU666wT5iqBvOqqqyJMdiAJaQ8F0LgbGDYbAzBOOsyUGgAjpHbIxvZOuKbW4DAixkrtmM/CNeGdMN5J0zXTSH95yyMFAPg1GU54EE5e6YTJ/N0nzYUj5MrD3zXTyDiZVubj6lk45QL3/IRHC9e89y7TUG55uDbj5JXT4XmvjPyzHK7icN7ns7RdQdrC5jNkuaXVTShXNzCsDrnSmJzG7GzQCb1LP/fguXk/LkxOuhODZtxE5pXoL88mmuE7w/aX/rjQX9gJxe9875kD/hObd7fQCmSLFj2Ebgnk8JrCatGixzHgGrJFixaTj1ZDtmjRM6iq/we8B2w61LnDOAAAAABJRU5ErkJggg==' alt="Twenty Hampers · Corporate Gifting" />
+        </div>
+        <p class="foot-tagline">Considered gifts, <em>generously given.</em></p>
+      </div>
+
+      <div class="foot-col">
+        <h5>Collections</h5>
+        <ul>
+          <li><a href="#">Executive Essentials</a></li>
+          <li><a href="#">Diaries &amp; Desk</a></li>
+          <li><a href="#">Gourmet &amp; Dry Fruits</a></li>
+          <li><a href="#">Hand-Made Chocolates</a></li>
+          <li><a href="#">Onboarding Kits</a></li>
+          <li><a href="#">Festive Hampers</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h5>The House</h5>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">The Atelier</a></li>
+          <li><a href="#">Bespoke Service</a></li>
+          <li><a href="#">Press &amp; Notes</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h5>Service</h5>
+        <ul>
+          <li><a href="#">Corporate Enquiry</a></li>
+          <li><a href="#">Private Commissions</a></li>
+          <li><a href="#">Pan-India Delivery</a></li>
+          <li><a href="#">International Shipping</a></li>
+          <li><a href="#">Returns &amp; Care</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h5>Concierge</h5>
+        <ul>
+          <li><a href="tel:+919743296437">+91 97432 96437</a></li>
+          <li><a href="mailto:concierge@twentyhampers.com">hello@twentyhampers.com</a></li>
+          <li><a href="#">By appointment · Bengaluru</a></li>
+          <li><a href="#">Mon — Sat  ·  10:00 - 19:00</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© TWENTY HAMPERS · A HOUSE OF CORPORATE &amp; PRIVATE GIFTING</div>
+      <div class="foot-socials" aria-label="Social">
+        <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M11 7c-2 0-4 1.5-4 4 0 1.4.8 2.2 1.4 2.5.2.1.4 0 .4-.2L9 12.7c.1-.3 0-.5-.1-.7-.3-.4-.5-.9-.5-1.6 0-2 1.5-3.8 4-3.8 2.2 0 3.4 1.3 3.4 3.1 0 2.3-1 4.3-2.6 4.3-.9 0-1.5-.7-1.3-1.6.2-1 .7-2.1.7-2.9 0-.7-.4-1.2-1.1-1.2-.9 0-1.6.9-1.6 2.1 0 .8.3 1.3.3 1.3l-1.1 4.6c-.3 1.4 0 3.1 0 3.2 0 .1.1.1.2.1l1.3-1.5c.1-.1.6-.9.6-1 .2-.8.7-2.6.7-2.6.4.7 1.4 1.3 2.5 1.3 3.3 0 5.5-3 5.5-7C20 9 17.6 7 14.5 7"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 11v6"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 8h2V5h-2c-1.7 0-3 1.3-3 3v2H9v3h2v8h3v-8h2.5l.5-3H14V8z"/></svg></a>
+      </div>
+      <div>Crafted in Mumbai · Shipped worldwide</div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Tweaks panel mount -->
+<div id="tweaks-root"></div>
+
+<script>
+/* Cinematic scroll reveals + small interactions */
+(function(){
+  // Mark JS as ready BEFORE anything else, so the hide-by-default CSS only kicks in
+  // once we have a chance to flip elements visible.
+  document.documentElement.classList.add('js-on');
+
+  const observe = () => {
+    if (!('IntersectionObserver' in window)) {
+      // Safari < 12 / very old — show everything immediately
+      document.querySelectorAll('.reveal, .reveal-stagger, .reveal-letters').forEach(el => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -4% 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-stagger, .reveal-letters').forEach(el => {
+      // Items already in viewport at load — flip on next frame
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        requestAnimationFrame(() => el.classList.add('in'));
+      } else {
+        io.observe(el);
+      }
+    });
+
+    // Safety net: anything still hidden after 1.6s is forced visible.
+    setTimeout(() => {
+      document.querySelectorAll('.reveal, .reveal-stagger, .reveal-letters').forEach(el => {
+        if (!el.classList.contains('in')) el.classList.add('in');
+      });
+    }, 1600);
+  };
+
+  // Wrap each line in hero h1 for letter reveal
+  function prepHero(){
+    document.querySelectorAll('.reveal-letters h1 .l1, .reveal-letters h1 .l2').forEach(line => {
+      const text = line.textContent;
+      line.innerHTML = '<span>' + text + '</span>';
+    });
+  }
+
+  function dupMarquee(){
+    document.querySelectorAll('.marquee-track').forEach(track => {
+      track.innerHTML = track.innerHTML + track.innerHTML;
+    });
+  }
+
+  function navScroll(){
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (id.length > 1) {
+          const t = document.querySelector(id);
+          if (t) {
+            e.preventDefault();
+            window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  }
+
+  function heroParallax(){
+    const plate = document.querySelector('.hero-plate .plate');
+    if (!plate) return;
+    let raf = null;
+    const apply = () => {
+      const r = plate.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const offset = Math.max(-1, Math.min(1, (r.top + r.height/2 - vh/2) / vh));
+      plate.style.transform = 'translateY(' + (offset * -16) + 'px)';
+      raf = null;
+    };
+    window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(apply); }, { passive: true });
+    apply();
+  }
+
+  const init = () => { prepHero(); dupMarquee(); observe(); navScroll(); heroParallax(); };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+</script>
+
+<!-- React + Babel for tweaks panel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type='text/babel'>
+
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+//
+// Owns the host protocol (listens for __activate_edit_mode / __deactivate_edit_mode,
+// posts __edit_mode_available / __edit_mode_set_keys / __edit_mode_dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type="range">, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     "primaryColor": "#D97757",
+//     "palette": ["#D97757", "#29261b", "#f6f4ef"],
+//     "fontSize": 16,
+//     "density": "regular",
+//     "dark": false
+//   }/*EDITMODE-END*/;
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label="Typography" />
+//           <TweakSlider label="Font size" value={t.fontSize} min={10} max={32} unit="px"
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label="Density" value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label="Theme" />
+//           <TweakColor  label="Primary" value={t.primaryColor}
+//                        options={['#D97757', '#2A6FDB', '#1F8A5B', '#7A5AE0']}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakColor  label="Palette" value={t.palette}
+//                        options={[['#D97757', '#29261b', '#f6f4ef'],
+//                                  ['#475569', '#0f172a', '#f1f5f9']]}
+//                        onChange={(v) => setTweak('palette', v)} />
+//           <TweakToggle label="Dark mode" value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// ─────────────────────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+
+  .twk-field{appearance:none;width:100%;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+
+  .twk-num{display:flex;align-items:center;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+
+  .twk-chips{display:flex;gap:6px}
+  .twk-chip{position:relative;appearance:none;flex:1;min-width:0;height:46px;
+    padding:0;border:0;border-radius:6px;overflow:hidden;cursor:default;
+    box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.06);
+    transition:transform .12s cubic-bezier(.3,.7,.4,1),box-shadow .12s}
+  .twk-chip:hover{transform:translateY(-1px);
+    box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.12)}
+  .twk-chip[data-on="1"]{box-shadow:0 0 0 1.5px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.15)}
+  .twk-chip>span{position:absolute;top:0;bottom:0;right:0;width:34%;
+    display:flex;flex-direction:column;box-shadow:-1px 0 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i{flex:1;box-shadow:0 -1px 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i:first-child{box-shadow:none}
+  .twk-chip svg{position:absolute;top:6px;left:6px;width:13px;height:13px;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+`;
+
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a "[object Object]" key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    // Same-window signal so in-page listeners (deck-stage rail thumbnails)
+    // can react — the parent message only reaches the host, not peers.
+    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
+  }, []);
+  return [values, setTweak];
+}
+
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts __edit_mode_dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes __deactivate_edit_mode back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', noDeckControls = false, children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  // Auto-inject a rail toggle when a <deck-stage> is on the page. The
+  // toggle drives the deck's per-viewer _railVisible via window message;
+  // state is mirrored from the same localStorage key the deck reads so
+  // the control reflects reality across reloads. The mechanism is the
+  // message — authors who want custom placement can post it directly
+  // and pass noDeckControls to suppress this one.
+  const hasDeckStage = React.useMemo(
+    () => typeof document !== 'undefined' && !!document.querySelector('deck-stage'),
+    [],
+  );
+  // Hide the toggle until the host has actually enabled the rail (the
+  // __omelette_rail_enabled window message, posted only when the
+  // omelette_deck_rail_enabled flag is on for this user). The initial read
+  // covers TweaksPanel mounting after the message already arrived; the
+  // listener covers the common case of mounting first.
+  const [railEnabled, setRailEnabled] = React.useState(
+    () => hasDeckStage && !!document.querySelector('deck-stage')?._railEnabled,
+  );
+  React.useEffect(() => {
+    if (!hasDeckStage || railEnabled) return undefined;
+    const onMsg = (e) => {
+      if (e.data && e.data.type === '__omelette_rail_enabled') setRailEnabled(true);
+    };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, [hasDeckStage, railEnabled]);
+  const [railVisible, setRailVisible] = React.useState(() => {
+    try { return localStorage.getItem('deck-stage.railVisible') !== '0'; } catch (e) { return true; }
+  });
+  const toggleRail = (on) => {
+    setRailVisible(on);
+    window.postMessage({ type: '__deck_rail_visible', on }, '*');
+  };
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-noncommentable=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">
+          {children}
+          {hasDeckStage && railEnabled && !noDeckControls && (
+            <TweakSection label="Deck">
+              <TweakToggle label="Thumbnail rail" value={railVisible} onChange={toggleRail} />
+            </TweakSection>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ── Layout helpers ──────────────────────────────────────────────────────────
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ── Controls ────────────────────────────────────────────────────────────────
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  // Segments wrap mid-word once per-segment width runs out. The track is
+  // ~248px (280 panel − 28 body pad − 4 seg pad), each button loses 12px
+  // to its own padding, and 11.5px system-ui averages ~6.3px/char — so 2
+  // options fit ~16 chars each, 3 fit ~10. Past that (or >3 options), fall
+  // back to a dropdown rather than wrap.
+  const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
+  const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
+  const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
+  if (!fitsAsSegments) {
+    // <select> emits strings — map back to the original option value so the
+    // fallback stays type-preserving (numbers, booleans) like the segment path.
+    const resolve = (s) => {
+      const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
+      return m === undefined ? s : typeof m === 'object' ? m.value : m;
+    };
+    return <TweakSelect label={label} value={value} options={options}
+                        onChange={(s) => onChange(resolve(s))} />;
+  }
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
+
+// Relative-luminance contrast pick — checkmarks drawn over a swatch need to
+// read on both #111 and #fafafa without per-option configuration. Hex input
+// only (#rgb / #rrggbb); named or rgb()/hsl() colors fall through to "light".
+function __twkIsLight(hex) {
+  const h = String(hex).replace('#', '');
+  const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h.padEnd(6, '0');
+  const n = parseInt(x.slice(0, 6), 16);
+  if (Number.isNaN(n)) return true;
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return r * 299 + g * 587 + b * 114 > 148000;
+}
+
+const __TwkCheck = ({ light }) => (
+  <svg viewBox="0 0 14 14" aria-hidden="true">
+    <path d="M3 7.2 5.8 10 11 4.2" fill="none" strokeWidth="2.2"
+          strokeLinecap="round" strokeLinejoin="round"
+          stroke={light ? 'rgba(0,0,0,.78)' : '#fff'} />
+  </svg>
+);
+
+// TweakColor — curated color/palette picker. Each option is either a single
+// hex string or an array of 1-5 hex strings; the card adapts — a lone color
+// renders solid, a palette renders colors[0] as the hero (left ~2/3) with the
+// rest stacked in a sharp column on the right. onChange emits the
+// option in the shape it was passed (string stays string, array stays array).
+// Without options it falls back to the native color input for back-compat.
+function TweakColor({ label, value, options, onChange }) {
+  if (!options || !options.length) {
+    return (
+      <div className="twk-row twk-row-h">
+        <div className="twk-lbl"><span>{label}</span></div>
+        <input type="color" className="twk-swatch" value={value}
+               onChange={(e) => onChange(e.target.value)} />
+      </div>
+    );
+  }
+  // Native <input type=color> emits lowercase hex per the HTML spec, so
+  // compare case-insensitively. String() guards JSON.stringify(undefined),
+  // which returns the primitive undefined (no .toLowerCase).
+  const key = (o) => String(JSON.stringify(o)).toLowerCase();
+  const cur = key(value);
+  return (
+    <TweakRow label={label}>
+      <div className="twk-chips" role="radiogroup">
+        {options.map((o, i) => {
+          const colors = Array.isArray(o) ? o : [o];
+          const [hero, ...rest] = colors;
+          const sup = rest.slice(0, 4);
+          const on = key(o) === cur;
+          return (
+            <button key={i} type="button" className="twk-chip" role="radio"
+                    aria-checked={on} data-on={on ? '1' : '0'}
+                    aria-label={colors.join(', ')} title={colors.join(' · ')}
+                    style={{ background: hero }}
+                    onClick={() => onChange(o)}>
+              {sup.length > 0 && (
+                <span>
+                  {sup.map((c, j) => <i key={j} style={{ background: c }} />)}
+                </span>
+              )}
+              {on && <__TwkCheck light={__twkIsLight(hero)} />}
+            </button>
+          );
+        })}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
+
+</script>
+<script type="text/babel" data-presets="react">
+const TWEAK_DEFAULTS = JSON.parse(document.getElementById('tweak-defaults').textContent
+  .replace(/\/\*EDITMODE-(BEGIN|END)\*\//g, ''));
+
+function TwentyTweaks() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  React.useEffect(() => {
+    document.body.dataset.palette = t.palette;
+    document.body.dataset.display = t.display;
+    document.body.dataset.texture = t.texture;
+  }, [t.palette, t.display, t.texture]);
+  return (
+    <TweaksPanel>
+      <TweakSection label="Palette" />
+      <TweakRadio label="House" value={t.palette}
+        options={[
+          { value: 'warm-artisanal', label: 'Cream' },
+          { value: 'bone-burgundy', label: 'Bone' },
+          { value: 'sand-saffron',   label: 'Saffron' },
+          { value: 'midnight-gold',  label: 'Midnight' },
+        ]}
+        onChange={(v) => setTweak('palette', v)} />
+      <TweakSection label="Display Type" />
+      <TweakRadio label="Face" value={t.display}
+        options={[
+          { value: 'cormorant', label: 'Cormorant' },
+          { value: 'italiana',  label: 'Italiana' },
+          { value: 'tenor',     label: 'Tenor' },
+        ]}
+        onChange={(v) => setTweak('display', v)} />
+      <TweakSection label="Surface" />
+      <TweakRadio label="Texture" value={t.texture}
+        options={[
+          { value: 'paper', label: 'Paper' },
+          { value: 'linen', label: 'Linen' },
+          { value: 'none',  label: 'None'  },
+        ]}
+        onChange={(v) => setTweak('texture', v)} />
+    </TweaksPanel>
+  );
+}
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TwentyTweaks />);
+</script>
+
+</body>
+</html>
